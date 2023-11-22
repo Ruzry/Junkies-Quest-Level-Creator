@@ -2,7 +2,8 @@
 
  A level editor designed to create and edit levels for Junkies Quest. The idea is to speed up development of Junkies Quest later down the line. Building alongside the level renderer for the game to aid compatibilty.
 
- Goals:
+ **Goals:**
+ 
  Create and load grid style levels of varying sizes, then render levels with grid overlay.
  
  Create Assets Menu to Import Assets into new and exsisting asset groups that can be swapped between, which have the asset content rendered. Assets can be dragged onto the grid and snapped into place.
