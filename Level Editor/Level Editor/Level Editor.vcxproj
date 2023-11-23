@@ -139,18 +139,32 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\LevelRenderer\GridObject.cpp" />
+    <ClCompile Include="src\LevelRenderer\GridSpace.cpp" />
+    <ClCompile Include="src\Menus\AssetMenu.cpp" />
     <ClCompile Include="Include\imgui-sfml\imgui-SFML.cpp" />
     <ClCompile Include="Include\imgui\imgui.cpp" />
     <ClCompile Include="Include\imgui\imgui_demo.cpp" />
     <ClCompile Include="Include\imgui\imgui_draw.cpp" />
     <ClCompile Include="Include\imgui\imgui_tables.cpp" />
     <ClCompile Include="Include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\Menus\Menu.cpp" />
+    <ClCompile Include="src\LevelRenderer\LevelRenderer.cpp" />
+    <ClCompile Include="src\Level Editor\LevelEditor.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Menus\ToolMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\LevelRenderer\GridObject.h" />
+    <ClInclude Include="src\LevelRenderer\GridSpace.h" />
+    <ClInclude Include="src\Menus\AssetMenu.h" />
     <ClInclude Include="Include\imgui-sfml\imgui-SFML.h" />
     <ClInclude Include="Include\imgui-sfml\imgui-SFML_export.h" />
     <ClInclude Include="Include\imgui\imgui.h" />
+    <ClInclude Include="src\Menus\Menu.h" />
+    <ClInclude Include="src\LevelRenderer\LevelRenderer.h" />
+    <ClInclude Include="src\Level Editor\LevelEditor.h" />
+    <ClInclude Include="src\Menus\ToolMenu.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,36 +10,43 @@
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 
+#include "Level Editor/LevelEditor.h"
+
+const int WINDOW_WIDTH = 1200, WINDOW_HEIGHT = 800;
+
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(640, 480), "Junkies Quest Level Editor");
+    //Set up main window
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Junkies Quest Level Editor");
     window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
 
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    LevelEditor levelEditor = LevelEditor(&window);
+    float deltaTime;
 
+    //Game Loop
     sf::Clock deltaClock;
-    while (window.isOpen()) {
+    while (window.isOpen())
+    {
+        deltaTime = deltaClock.restart().asSeconds();
+
         sf::Event event;
-        while (window.pollEvent(event)) {
+        while (window.pollEvent(event))
+        {
             ImGui::SFML::ProcessEvent(window, event);
 
-            if (event.type == sf::Event::Closed) {
+            if (event.type == sf::Event::Closed)
                 window.close();
-            }
+
         }
 
         ImGui::SFML::Update(window, deltaClock.restart());
+        levelEditor.update(deltaTime);
 
-        ImGui::ShowDemoWindow();
-
-        ImGui::Begin("Hello, world!");
-        ImGui::Button("Look at this pretty button");
-        ImGui::End();
+        //ImGui::ShowDemoWindow();
 
         window.clear();
-        window.draw(shape);
+        levelEditor.render();
         ImGui::SFML::Render(window);
         window.display();
     }
