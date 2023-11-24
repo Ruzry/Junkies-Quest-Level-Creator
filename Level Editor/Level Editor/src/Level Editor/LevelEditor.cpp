@@ -9,6 +9,7 @@ LevelEditor::LevelEditor(sf::RenderWindow* window)
 
 void LevelEditor::update(float deltaTime)
 {
+	manageMenus();
 }
 
 void LevelEditor::render()
@@ -32,6 +33,19 @@ void LevelEditor::setupLayout()
 	leftToolbarSpace.setSize(sf::Vector2f(TOOLBAR_WIDTH, WINDOW_HEIGHT));
 	leftToolbarSpace.setPosition(0, 0);
 
+}
+
+void LevelEditor::manageMenus()
+{	
+	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
+	ImGui::SetNextWindowSize(ImVec2(TOOLBAR_WIDTH, WINDOW_HEIGHT), ImGuiCond_FirstUseEver);
+
+	ImGui::Begin("Asset Toolbar", &isActive, ImGuiWindowFlags_MenuBar);
+
+	toolbar.fileMenu(&isActive);
+	toolbar.AssetMenu();
+
+	ImGui::End();
 }
 
 void LevelEditor::renderGrid()

@@ -1,13 +1,14 @@
 #pragma once
-class AssetMenu
+class FileMenu
 {
 public:
-	AssetMenu();
+	FileMenu();
 	void update(float deltaTime);
 	void render();
 protected:
 
 private:
+
 
 };
 

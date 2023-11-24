@@ -43,7 +43,7 @@ int main() {
         ImGui::SFML::Update(window, deltaClock.restart());
         levelEditor.update(deltaTime);
 
-        //ImGui::ShowDemoWindow();
+        ImGui::ShowDemoWindow();
 
         window.clear();
         levelEditor.render();

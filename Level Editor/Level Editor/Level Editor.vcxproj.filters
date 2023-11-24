@@ -42,7 +42,7 @@
     <ClCompile Include="src\LevelRenderer\LevelRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Menus\Menu.cpp">
+    <ClCompile Include="src\Menus\FileMenu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Menus\AssetMenu.cpp">
@@ -55,6 +55,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\LevelRenderer\GridSpace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Menus\Toolbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,7 +77,7 @@
     <ClInclude Include="src\LevelRenderer\LevelRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Menus\Menu.h">
+    <ClInclude Include="src\Menus\FileMenu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Menus\AssetMenu.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\LevelRenderer\GridObject.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Menus\Toolbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

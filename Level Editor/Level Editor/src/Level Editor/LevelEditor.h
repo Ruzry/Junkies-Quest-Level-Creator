@@ -1,6 +1,8 @@
 #pragma once
 
+#include "imgui.h"
 #include <SFML/Graphics.hpp>
+#include "../Menus/Toolbar.h"
 
 class LevelEditor
 {
@@ -16,9 +18,13 @@ private:
 	sf::RenderWindow* window_;
 
 	void setupLayout();
+	void manageMenus();
 	void renderGrid();
 	void renderMenu();
 	void renderLevel();
+
+	Toolbar toolbar = Toolbar();
+	bool isActive = true;
 
 	sf::RectangleShape leftToolbarSpace;
 	sf::RectangleShape rightToolbarSpace;
