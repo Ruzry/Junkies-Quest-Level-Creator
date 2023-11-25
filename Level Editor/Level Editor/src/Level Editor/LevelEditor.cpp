@@ -27,7 +27,7 @@ void LevelEditor::setupLayout()
 	levelView.setCenter(sf::Vector2f(LEVEL_X_CENTER, (WINDOW_HEIGHT / 2)));
 	levelView.setSize(sf::Vector2f(LEVEL_WIDTH, WINDOW_HEIGHT));
 	levelView.setViewport(sf::FloatRect(0.2f, 0.f, 0.8f, 1.f));
-	levelView.zoom(1.2f);
+	levelView.zoom(0.8f);
 
 	leftToolbarSpace.setFillColor(sf::Color(210, 215, 211));
 	leftToolbarSpace.setSize(sf::Vector2f(TOOLBAR_WIDTH, WINDOW_HEIGHT));
