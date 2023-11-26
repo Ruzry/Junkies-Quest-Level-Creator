@@ -3,6 +3,7 @@
 #include "imgui.h"
 #include <SFML/Graphics.hpp>
 #include "../Menus/Toolbar.h"
+#include "../LevelRenderer/LevelRenderer.h"
 
 class LevelEditor
 {
@@ -20,9 +21,8 @@ private:
 	void setupLayout();
 	void manageMenus();
 	void renderGrid();
-	void renderMenu();
-	void renderLevel();
 
+	LevelRenderer levelRenderer = LevelRenderer();
 	Toolbar toolbar = Toolbar();
 	bool isActive = true;
 

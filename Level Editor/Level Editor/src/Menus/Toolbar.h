@@ -16,7 +16,7 @@ public:
 	void update(float deltaTime);
 
 	void fileMenu(bool* isActive);
-	void AssetMenu();
+	void AssetMenu(const float TOOLBAR_WIDTH);
 protected:
 
 private:
@@ -24,8 +24,10 @@ private:
 	void open();
 	void save();
 	void exportLevel();
+
 	void assetTypeCombo();
-	void assetGrid();
+	void assetList(const float TOOLBAR_WIDTH);
+	void assetProperties(const float TOOLBAR_WIDTH);
 
 	sf::Texture bushTexture;
 	sf::Texture grassTexture;
@@ -40,4 +42,7 @@ private:
 	int selectedIndex = 0;
 
 	const std::string COMBO_TITLE = "Asset Types";
+	const float LIST_BOX_HEIGHT = 500.f;
+	const float LIST_BOX_X_OFFSET = 15.f;
+	const float PROPERTIES_HEIGHT = 195.f;
 };

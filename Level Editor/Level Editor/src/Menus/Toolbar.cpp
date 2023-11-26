@@ -73,57 +73,74 @@ void Toolbar::exportLevel()
 {
 }
 
-void Toolbar::AssetMenu()
+void Toolbar::AssetMenu(const float TOOLBAR_WIDTH)
 {
     assetTypeCombo();
     
-    assetGrid();
+    assetList(TOOLBAR_WIDTH);
+
+    assetProperties(TOOLBAR_WIDTH);
 }
 
 void Toolbar::assetTypeCombo()
 {
-    if (ImGui::BeginCombo("Asset Types", assetTypeComboNames[selectedIndex].c_str()))
+    ImGui::SetNextItemWidth(150);
+    if (ImGui::BeginCombo("Asset Type", assetTypeComboNames[selectedIndex].c_str()))
     {
         for (int i = 0; i < assetTypeComboNames.size(); ++i)
         {
             const bool isSelected = (selectedIndex == i);
             if (ImGui::Selectable(assetTypeComboNames[i].c_str(), isSelected))
-            {
                 selectedIndex = i;
-            }
 
             // Set the initial focus when opening the combo
             // (scrolling + keyboard navigation focus)
-            if (isSelected) {
+            if (isSelected) 
                 ImGui::SetItemDefaultFocus();
-            }
         }
         ImGui::EndCombo();
     }
 }
 
-void Toolbar::assetGrid()
+void Toolbar::assetList(const float TOOLBAR_WIDTH)
 {
-    static char selected[4][4] = { { 1, 0, 0, 0 }, { 0, 1, 0, 0 }, { 0, 0, 1, 0 }, { 0, 0, 0, 1 } };
-
-    sf::Sprite sprite;
-    sprite.setTexture(grassTexture);
-    sprite.scale(sf::Vector2f(2.5f, 2.5f));
-
-    for (int y = 0; y < 4; y++)
+    if (ImGui::BeginListBox("##listbox 2", ImVec2((TOOLBAR_WIDTH - LIST_BOX_X_OFFSET), LIST_BOX_HEIGHT)))
     {
-        for (int x = 0; x < 4; x++)
+        sf::Sprite sprite;
+        sprite.setTexture(grassTexture);
+        sprite.scale(sf::Vector2f(2.25f, 2.25f));
+
+        for (int y = 0; y < 12; y++)
         {
-            sprite.setTexture(textures[x]);
+            for (int x = 0; x < 4; x++)
+            {
+                sprite.setTexture(textures[x]);
 
-            if (x > 0)
-                ImGui::SameLine();
+                if (x > 0)
+                    ImGui::SameLine();
 
-            ImGui::PushID(y * 4 + x);
+                ImGui::PushID(y * 4 + x);
 
-            ImGui::ImageButton(sprite);
+                ImGui::ImageButton(sprite);
 
-            ImGui::PopID();
+                ImGui::PopID();
+            }
         }
+        ImGui::EndListBox();
+    }
+}
+
+void Toolbar::assetProperties(const float TOOLBAR_WIDTH)
+{
+    ImGui::SeparatorText("Asset Properties");
+    {
+        ImGui::SetNextWindowSizeConstraints(ImVec2(0.0f, ImGui::GetTextLineHeightWithSpacing() * 1),
+            ImVec2(TOOLBAR_WIDTH, PROPERTIES_HEIGHT));
+
+        ImGui::BeginChild("ConstrainedChild", ImVec2(-FLT_MIN, 0.0f), ImGuiChildFlags_Border | ImGuiChildFlags_AutoResizeY);
+        for (int n = 0; n < 15; n++)
+            ImGui::Text("Line %04d", n);
+        //Properties Here
+        ImGui::EndChild();
     }
 }

@@ -14,8 +14,10 @@ void LevelEditor::update(float deltaTime)
 
 void LevelEditor::render()
 {
-	renderMenu();
-	renderLevel();
+	window_->setView(levelView);
+
+	//levelRenderer.render(window_);
+	renderGrid();
 }
 
 void LevelEditor::setupLayout()
@@ -27,7 +29,7 @@ void LevelEditor::setupLayout()
 	levelView.setCenter(sf::Vector2f(LEVEL_X_CENTER, (WINDOW_HEIGHT / 2)));
 	levelView.setSize(sf::Vector2f(LEVEL_WIDTH, WINDOW_HEIGHT));
 	levelView.setViewport(sf::FloatRect(0.2f, 0.f, 0.8f, 1.f));
-	levelView.zoom(0.8f);
+	levelView.zoom(1.2f);
 
 	leftToolbarSpace.setFillColor(sf::Color(210, 215, 211));
 	leftToolbarSpace.setSize(sf::Vector2f(TOOLBAR_WIDTH, WINDOW_HEIGHT));
@@ -43,7 +45,7 @@ void LevelEditor::manageMenus()
 	ImGui::Begin("Asset Toolbar", &isActive, ImGuiWindowFlags_MenuBar);
 
 	toolbar.fileMenu(&isActive);
-	toolbar.AssetMenu();
+	toolbar.AssetMenu(TOOLBAR_WIDTH);
 
 	ImGui::End();
 }
@@ -63,18 +65,4 @@ void LevelEditor::renderGrid()
 		sf::Vertex horizontalLine[] = { {{TOOLBAR_WIDTH, yPos}, sf::Color::Cyan}, {{WINDOW_WIDTH, yPos}, sf::Color::Cyan} };
 		window_->draw(horizontalLine, 2, sf::Lines);
 	}
-}
-
-void LevelEditor::renderMenu()
-{
-	window_->setView(menuView);
-
-	window_->draw(leftToolbarSpace);
-}
-
-void LevelEditor::renderLevel()
-{
-	window_->setView(levelView);
-
-	renderGrid();
 }
