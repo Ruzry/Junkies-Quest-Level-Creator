@@ -7,22 +7,22 @@ Toolbar::Toolbar()
     assetTypeComboNames.push_back("Paths");
     assetTypeComboNames.push_back("Trees");
 
-    grassTexture.loadFromFile("Assets/Temp/16x16 Grass Square.png", sf::IntRect(0, 0, 16, 16));
+    grassTexture.loadFromFile("Assets/Basic/16x16 Grass Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(grassTexture);
 
-    grass2Texture.loadFromFile("Assets/Temp/16x16 Grass 2 Square.png", sf::IntRect(0, 0, 16, 16));
+    grass2Texture.loadFromFile("Assets/Basic/16x16 Grass 2 Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(grass2Texture);
 
-    bushTexture.loadFromFile("Assets/Temp/16x16 Bush Square.png", sf::IntRect(0, 0, 16, 16));
+    bushTexture.loadFromFile("Assets/Basic/16x16 Bush Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(bushTexture);
 
-    blackTexture.loadFromFile("Assets/Temp/16x16 Black Square.png", sf::IntRect(0, 0, 16, 16));
+    blackTexture.loadFromFile("Assets/Basic/16x16 Black Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(blackTexture);
 
-    redTexture.loadFromFile("Assets/Temp/16x16 Red Square.png", sf::IntRect(0, 0, 16, 16));
+    redTexture.loadFromFile("Assets/Basic/16x16 Red Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(redTexture);
 
-    whiteTexture.loadFromFile("Assets/Temp/16x16 White Square.png", sf::IntRect(0, 0, 16, 16));
+    whiteTexture.loadFromFile("Assets/Basic/16x16 White Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(whiteTexture);
 }
 
@@ -121,7 +121,8 @@ void Toolbar::assetList(const float TOOLBAR_WIDTH)
 
                 ImGui::PushID(y * 4 + x);
 
-                ImGui::ImageButton(sprite);
+                if (ImGui::ImageButton(sprite))
+                    selectAsset((x + y));
 
                 ImGui::PopID();
             }
@@ -143,4 +144,10 @@ void Toolbar::assetProperties(const float TOOLBAR_WIDTH)
         //Properties Here
         ImGui::EndChild();
     }
+}
+
+void Toolbar::selectAsset(int ID)
+{
+    ImGui::SetItemDefaultFocus();
+    std::cout << "Something " << ID;
 }
