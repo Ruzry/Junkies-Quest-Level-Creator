@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Level Editor\AssetGroup.cpp" />
     <ClCompile Include="src\LevelRenderer\GridObject.cpp" />
     <ClCompile Include="src\LevelRenderer\GridSpace.cpp" />
     <ClCompile Include="src\Menus\AssetMenu.cpp" />
@@ -156,6 +157,7 @@
     <ClCompile Include="src\Menus\Toolbar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Level Editor\AssetGroup.h" />
     <ClInclude Include="src\Level Editor\WindowInfo.hpp" />
     <ClInclude Include="src\LevelRenderer\GridObject.h" />
     <ClInclude Include="src\LevelRenderer\GridSpace.h" />
@@ -168,9 +170,9 @@
     <ClInclude Include="src\Level Editor\LevelEditor.h" />
     <ClInclude Include="src\Menus\ToolMenu.h" />
     <ClInclude Include="src\Menus\Toolbar.h" />
-    <ClInclude Include="src\Utility\RuzUtility.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\AssetGroup.json" />
     <None Include="Assets\Basic\Basic.json" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -24,6 +24,8 @@ Toolbar::Toolbar()
 
     whiteTexture.loadFromFile("Assets/Basic/16x16 White Square.png", sf::IntRect(0, 0, 16, 16));
     textures.push_back(whiteTexture);
+
+    loadAssetComboGroups();
 }
 
 void Toolbar::update(float deltaTime)
@@ -73,6 +75,45 @@ void Toolbar::exportLevel()
 {
 }
 
+void Toolbar::loadAssetComboGroups()
+{
+    std::ifstream f("Assets/AssetGroup.json");
+    json data = json::parse(f);
+
+    std::cout << data.dump(4) << std::endl;
+
+    //for amount of asset_groups in the json
+    int amountOfGroups = data["asset_group"].size();
+
+    for (int i = 0; i < amountOfGroups; i++)
+    {
+        const std::string comboTitle = data["asset_group"].at(i)["asset_type"];
+        const int amountOfObjects = data["asset_group"].at(i)["amount_of_objects"].get<unsigned int>();
+
+        AssetGroup assetGroup = AssetGroup(comboTitle, amountOfObjects);
+        std::vector<GridObject> objects = {};
+
+        for (int j = 0; j < data["asset_group"].at(i)["objects"].size(); j++)
+        {
+            const std::string objectName = data["asset_group"].at(i)["objects"].at(j)["name"];
+            const std::string filePath = data["asset_group"].at(i)["objects"].at(j)["file_path"];
+            const bool intangible = data["asset_group"].at(i)["objects"].at(j)["intangible"];
+            const int size = data["asset_group"].at(i)["objects"].at(j)["size"];
+
+            GridObject object = GridObject(objectName, filePath, intangible, size);
+
+            objects.push_back(object);
+        }
+
+        assetGroup.setAssets(objects);
+
+        
+        assetGroups.push_back(assetGroup);
+    }
+
+    bool STOPHERE = true;
+}
+
 void Toolbar::AssetMenu(const float TOOLBAR_WIDTH)
 {
     assetTypeCombo();
@@ -85,12 +126,12 @@ void Toolbar::AssetMenu(const float TOOLBAR_WIDTH)
 void Toolbar::assetTypeCombo()
 {
     ImGui::SetNextItemWidth(150);
-    if (ImGui::BeginCombo("Asset Type", assetTypeComboNames[selectedIndex].c_str()))
+    if (ImGui::BeginCombo("Asset Type", assetGroups[selectedIndex].getComboTitle().c_str()))
     {
-        for (int i = 0; i < assetTypeComboNames.size(); ++i)
+        for (int i = 0; i < assetGroups.size(); ++i)
         {
             const bool isSelected = (selectedIndex == i);
-            if (ImGui::Selectable(assetTypeComboNames[i].c_str(), isSelected))
+            if (ImGui::Selectable(assetGroups[i].getComboTitle().c_str(), isSelected))
                 selectedIndex = i;
 
             // Set the initial focus when opening the combo
@@ -149,5 +190,5 @@ void Toolbar::assetProperties(const float TOOLBAR_WIDTH)
 void Toolbar::selectAsset(int ID)
 {
     ImGui::SetItemDefaultFocus();
-    std::cout << "Something " << ID;
+    std::cout << "Asset Button Pressed " << ID << " ";
 }

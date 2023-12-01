@@ -60,6 +60,9 @@
     <ClCompile Include="src\Menus\Toolbar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Level Editor\AssetGroup.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\imgui\imgui.h">
@@ -95,14 +98,15 @@
     <ClInclude Include="src\Menus\Toolbar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility\RuzUtility.hpp">
+    <ClInclude Include="src\Level Editor\WindowInfo.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Level Editor\WindowInfo.hpp">
+    <ClInclude Include="src\Level Editor\AssetGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Basic\Basic.json" />
+    <None Include="Assets\AssetGroup.json" />
   </ItemGroup>
 </Project>
