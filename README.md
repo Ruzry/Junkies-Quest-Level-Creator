@@ -1,17 +1,20 @@
 # Junkies-Quest-Level-Creator
 
- A level editor designed to create and edit levels for Junkies Quest. The idea is to speed up development of Junkies Quest later down the line. Building alongside the level renderer for the game to aid compatibilty.
-
+ A level editor designed to create and edit levels for Junkies Quest. The goal is to speed up development of Junkies Quest. Building alongside the level renderer for the game to aid compatibilty.
  
 
  **Goals:**
  
- Create and load grid style levels of varying sizes, then render levels with grid overlay.
+Level renderer: 
+ Displays a current level being edited.
+ Levels will be saved to a json that the game can read.
  
- Create Assets Menu to Import Assets into new and exsisting asset groups that can be swapped between, which have the asset content rendered. Assets can be dragged onto the grid and snapped into place.
- 
- Create ability to save level information to json file that the game can import.
-
+Asset Menu: 
+ Menu that sits along side the displayed level. 
+ Contains a drop down of asset groups that display the asset as selectable icons. 
+ Assets and asset Groups can be manipulated within the menu. (new, delete, etc)
+ Assets will be selectable and placeble on the grid with a snapping feature to align on the grid.
+ Asset groups settings will be saved to json file.
  
 
  **Project Information:**
