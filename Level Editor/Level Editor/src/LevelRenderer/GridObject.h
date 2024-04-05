@@ -20,7 +20,7 @@ public:
     std::string getFilePath() { return filePath; }
     bool getIsIntangible() { return isIntangible; }
     int getSize() { return size; }
-    sf::Texture getTexture() { return texture; }
+    sf::Texture getTexture() { return *texture; }
 
 protected:
 
@@ -31,7 +31,7 @@ private:
     bool isIntangible;
     int size;
 
-    sf::Texture texture;
+    sf::Texture *texture;
     //std::vector<GridSpace> occupiedSpaces = {}; Not calculated til map placement
 
 };

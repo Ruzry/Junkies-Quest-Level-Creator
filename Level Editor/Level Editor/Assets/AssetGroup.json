@@ -5,10 +5,10 @@
       "amount_of_objects": 3,
       "objects": [
         {
-           "name": "Red",
-           "file_path": "Assets/Basic/16x16 Red Square.png",
-           "intangible": true,
-           "size": 16
+          "name": "Red",
+          "file_path": "Assets/Basic/16x16 Red Square.png",
+          "intangible": true,
+          "size": 16
         },
         {
           "name": "Black",
@@ -17,8 +17,26 @@
           "size": 16
         },
         {
-          "name": "White",
+          "name": "White1",
           "file_path": "Assets/Basic/16x16 White Square.png",
+          "intangible": true,
+          "size": 16
+        },
+        {
+          "name": "White2",
+          "file_path": "Assets/Basic/16x16 White Square.png",
+          "intangible": true,
+          "size": 16
+        },
+        {
+          "name": "White3",
+          "file_path": "Assets/Basic/16x16 White Square.png",
+          "intangible": true,
+          "size": 16
+        },
+        {
+          "name": "Red2",
+          "file_path": "Assets/Basic/16x16 Red Square.png",
           "intangible": true,
           "size": 16
         }

@@ -41,5 +41,9 @@ void LevelEditor::manageMenus()
 	toolbar.fileMenu(&isActive);
 	toolbar.AssetMenu(windowInfo.getToolbarWidth());
 
+	isSelected = toolbar.isAssetSelected();
+	if (isSelected)
+		selectedAsset = toolbar.getSelectedAsset();
+
 	ImGui::End();
 }

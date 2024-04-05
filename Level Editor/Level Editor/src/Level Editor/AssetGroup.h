@@ -14,9 +14,12 @@ public:
 
 	std::string getComboTitle() { return comboTitle; }
 	std::vector<GridObject> getAssets() { return assets; }
+	std::vector<GridObject>* getAssets_() { return &assets;  }
+	GridObject* getAsset_(int index) { return &assets[index]; }
+	void setAssets(std::vector<GridObject> assets_) { assets = assets_; }
+
 	int getAmountOfObjects() { return amountOfObjects; }
 
-	void setAssets(std::vector<GridObject> assets_) { assets = assets_; }
 protected:
 
 private:

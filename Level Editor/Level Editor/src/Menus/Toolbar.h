@@ -25,6 +25,9 @@ public:
 
 	void fileMenu(bool* isActive);
 	void AssetMenu(const float TOOLBAR_WIDTH);
+
+	bool isAssetSelected() { return assetSelected; }
+	GridObject* getSelectedAsset();
 protected:
 
 private:
@@ -40,19 +43,12 @@ private:
 	void assetProperties(const float TOOLBAR_WIDTH);
 	void selectAsset(int ID);
 
-	sf::Texture bushTexture;
-	sf::Texture grassTexture;
-	sf::Texture grass2Texture;
-	sf::Texture blackTexture;
-	sf::Texture redTexture;
-	sf::Texture whiteTexture;
-
-	std::vector<sf::Texture> textures;
-
-	std::vector<std::string> assetTypeComboNames;
-	int selectedIndex = 0;
-
+	GridObject *selectedAsset;
+	std::vector<GridObject>* selectedGroup;
 	std::vector<AssetGroup> assetGroups = {};
+
+	int selectedGroupIndex = 0;
+	bool assetSelected = false;
 
 	const std::string COMBO_TITLE = "Asset Types";
 	const float LIST_BOX_HEIGHT = 500.f;

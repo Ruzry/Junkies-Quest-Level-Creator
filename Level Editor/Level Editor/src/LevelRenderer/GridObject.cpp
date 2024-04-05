@@ -7,5 +7,10 @@ GridObject::GridObject(std::string name_, std::string filePath_, bool isIntangib
 	isIntangible = isIntangible_;
 	size = size_;
 
-	texture.loadFromFile(filePath, sf::IntRect(0, 0, size, size));
+	texture = new sf::Texture;
+
+	texture->loadFromFile(filePath, sf::IntRect(0, 0, 16, 16));
+	setTexture(*texture);
+
+	//scale(sf::Vector2f(2.25f, 2.25f));//TEMP
 }

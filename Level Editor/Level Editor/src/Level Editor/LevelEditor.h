@@ -5,6 +5,7 @@
 #include "../Menus/Toolbar.h"
 #include "../LevelRenderer/LevelRenderer.h"
 #include "WindowInfo.hpp"
+#include "../LevelRenderer/GridObject.h"
 
 class LevelEditor
 {
@@ -31,4 +32,6 @@ private:
 
 	WindowInfo windowInfo;
 
+	bool isSelected = false;
+	GridObject* selectedAsset;
 };

@@ -2,29 +2,6 @@
 
 Toolbar::Toolbar()
 {
-    //TODO Load relavent info from save file about what asset Types exsist for the combo
-    assetTypeComboNames.push_back("Buildings");
-    assetTypeComboNames.push_back("Paths");
-    assetTypeComboNames.push_back("Trees");
-
-    grassTexture.loadFromFile("Assets/Basic/16x16 Grass Square.png", sf::IntRect(0, 0, 16, 16));
-    textures.push_back(grassTexture);
-
-    grass2Texture.loadFromFile("Assets/Basic/16x16 Grass 2 Square.png", sf::IntRect(0, 0, 16, 16));
-    textures.push_back(grass2Texture);
-
-    bushTexture.loadFromFile("Assets/Basic/16x16 Bush Square.png", sf::IntRect(0, 0, 16, 16));
-    textures.push_back(bushTexture);
-
-    blackTexture.loadFromFile("Assets/Basic/16x16 Black Square.png", sf::IntRect(0, 0, 16, 16));
-    textures.push_back(blackTexture);
-
-    redTexture.loadFromFile("Assets/Basic/16x16 Red Square.png", sf::IntRect(0, 0, 16, 16));
-    textures.push_back(redTexture);
-
-    whiteTexture.loadFromFile("Assets/Basic/16x16 White Square.png", sf::IntRect(0, 0, 16, 16));
-    textures.push_back(whiteTexture);
-
     loadAssetComboGroups();
 }
 
@@ -107,7 +84,6 @@ void Toolbar::loadAssetComboGroups()
 
         assetGroup.setAssets(objects);
 
-        
         assetGroups.push_back(assetGroup);
     }
 
@@ -123,16 +99,30 @@ void Toolbar::AssetMenu(const float TOOLBAR_WIDTH)
     assetProperties(TOOLBAR_WIDTH);
 }
 
+GridObject* Toolbar::getSelectedAsset()
+{
+    if (assetSelected)
+        return selectedAsset;
+    else
+        return nullptr;
+}
+
 void Toolbar::assetTypeCombo()
 {
     ImGui::SetNextItemWidth(150);
-    if (ImGui::BeginCombo("Asset Type", assetGroups[selectedIndex].getComboTitle().c_str()))
+    if (ImGui::BeginCombo("Asset Type", assetGroups[selectedGroupIndex].getComboTitle().c_str()))
     {
         for (int i = 0; i < assetGroups.size(); ++i)
         {
-            const bool isSelected = (selectedIndex == i);
+            const bool isSelected = (selectedGroupIndex == i);
             if (ImGui::Selectable(assetGroups[i].getComboTitle().c_str(), isSelected))
-                selectedIndex = i;
+            {
+                selectedGroupIndex = i;
+
+                selectedGroup = assetGroups[selectedGroupIndex].getAssets_();
+
+                assetSelected = false;
+            }
 
             // Set the initial focus when opening the combo
             // (scrolling + keyboard navigation focus)
@@ -147,27 +137,35 @@ void Toolbar::assetList(const float TOOLBAR_WIDTH)
 {
     if (ImGui::BeginListBox("##listbox 2", ImVec2((TOOLBAR_WIDTH - LIST_BOX_X_OFFSET), LIST_BOX_HEIGHT)))
     {
-        sf::Sprite sprite;
-        sprite.setTexture(grassTexture);
-        sprite.scale(sf::Vector2f(2.25f, 2.25f));
+        bool lastinLine = false;
+        bool currentLine = false;
 
-        for (int y = 0; y < 12; y++)
+        for (int assetIndex = 0; assetIndex < assetGroups[selectedGroupIndex].getAssets().size(); assetIndex++)
         {
-            for (int x = 0; x < 4; x++)
-            {
-                sprite.setTexture(textures[x]);
+            sf::Sprite* sprite = assetGroups[selectedGroupIndex].getAsset_(assetIndex);
+            sprite->scale(sf::Vector2f(2.25f, 2.25f));
 
-                if (x > 0)
-                    ImGui::SameLine();
+            if (lastinLine)
+                currentLine = false;
 
-                ImGui::PushID(y * 4 + x);
+            lastinLine = ((assetIndex + 1) % 4 ? false : true);
 
-                if (ImGui::ImageButton(sprite))
-                    selectAsset((x + y));
+            if (currentLine)
+                ImGui::SameLine();
+            else 
+                currentLine = true;
 
-                ImGui::PopID();
-            }
+            ImGui::PushID(assetIndex);
+
+            if (ImGui::ImageButton(assetGroups[selectedGroupIndex].getAssets()[assetIndex]))
+                selectAsset(assetIndex);
+
+            ImGui::PopID();
+
+            sprite->setScale(sf::Vector2f(1.f, 1.f));
+            
         }
+
         ImGui::EndListBox();
     }
 }
@@ -180,9 +178,16 @@ void Toolbar::assetProperties(const float TOOLBAR_WIDTH)
             ImVec2(TOOLBAR_WIDTH, PROPERTIES_HEIGHT));
 
         ImGui::BeginChild("ConstrainedChild", ImVec2(-FLT_MIN, 0.0f), ImGuiChildFlags_Border | ImGuiChildFlags_AutoResizeY);
-        for (int n = 0; n < 15; n++)
-            ImGui::Text("Line %04d", n);
-        //Properties Here
+
+        if (assetSelected)
+        {
+            const std::string isIntangible = selectedAsset->getIsIntangible() ? "Yes" : "No";
+                
+            ImGui::Text(("Name: " + selectedAsset->getName()).c_str());
+            ImGui::Text(("Intangible: " + isIntangible).c_str());
+            ImGui::Text(("Size: " + std::to_string(selectedAsset->getSize())).c_str());
+        }
+
         ImGui::EndChild();
     }
 }
@@ -191,4 +196,7 @@ void Toolbar::selectAsset(int ID)
 {
     ImGui::SetItemDefaultFocus();
     std::cout << "Asset Button Pressed " << ID << " ";
+
+    assetSelected = true;
+    selectedAsset = assetGroups[selectedGroupIndex].getAsset_(ID);
 }

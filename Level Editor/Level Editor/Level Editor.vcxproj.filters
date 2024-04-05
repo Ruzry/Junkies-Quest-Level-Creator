@@ -106,7 +106,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Basic\Basic.json" />
     <None Include="Assets\AssetGroup.json" />
   </ItemGroup>
 </Project>
