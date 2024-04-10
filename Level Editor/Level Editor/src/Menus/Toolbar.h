@@ -10,6 +10,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <map>
 #include <SFML/Graphics.hpp>
 
 #include "../Level Editor/AssetGroup.h"
@@ -27,7 +28,9 @@ public:
 	void AssetMenu(const float TOOLBAR_WIDTH);
 
 	bool isAssetSelected() { return assetSelected; }
+	std::map<std::string, sf::Texture>* getTextureMap() { return &textureMap; }
 	GridObject* getSelectedAsset();
+
 protected:
 
 private:
@@ -54,4 +57,6 @@ private:
 	const float LIST_BOX_HEIGHT = 500.f;
 	const float LIST_BOX_X_OFFSET = 15.f;
 	const float PROPERTIES_HEIGHT = 195.f;
+
+	std::map<std::string, sf::Texture> textureMap;
 };

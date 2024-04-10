@@ -80,6 +80,14 @@ void Toolbar::loadAssetComboGroups()
             GridObject object = GridObject(objectName, filePath, intangible, size);
 
             objects.push_back(object);
+
+            if (textureMap.find(objectName) == textureMap.end())
+            {
+                sf::Texture texture;
+                texture.loadFromFile(filePath);
+
+                textureMap.insert(std::make_pair(objectName, texture));
+            }
         }
 
         assetGroup.setAssets(objects);
@@ -133,27 +141,26 @@ void Toolbar::assetTypeCombo()
     }
 }
 
+/**
+* Populates the IMGUI List Box with assets as image buttons.
+* 
+**/
 void Toolbar::assetList(const float TOOLBAR_WIDTH)
 {
     if (ImGui::BeginListBox("##listbox 2", ImVec2((TOOLBAR_WIDTH - LIST_BOX_X_OFFSET), LIST_BOX_HEIGHT)))
     {
-        bool lastinLine = false;
-        bool currentLine = false;
+        bool newLine = true;
 
         for (int assetIndex = 0; assetIndex < assetGroups[selectedGroupIndex].getAssets().size(); assetIndex++)
         {
             sf::Sprite* sprite = assetGroups[selectedGroupIndex].getAsset_(assetIndex);
+            sprite->setTexture(textureMap.at(assetGroups[selectedGroupIndex].getAsset_(assetIndex)->getName()));
             sprite->scale(sf::Vector2f(2.25f, 2.25f));
 
-            if (lastinLine)
-                currentLine = false;
-
-            lastinLine = ((assetIndex + 1) % 4 ? false : true);
-
-            if (currentLine)
+            if (!newLine)
                 ImGui::SameLine();
-            else 
-                currentLine = true;
+
+            newLine = ((assetIndex + 1) % 4 ? false : true);
 
             ImGui::PushID(assetIndex);
 
@@ -163,7 +170,6 @@ void Toolbar::assetList(const float TOOLBAR_WIDTH)
             ImGui::PopID();
 
             sprite->setScale(sf::Vector2f(1.f, 1.f));
-            
         }
 
         ImGui::EndListBox();

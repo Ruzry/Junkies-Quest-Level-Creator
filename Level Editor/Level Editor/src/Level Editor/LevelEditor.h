@@ -12,7 +12,7 @@ class LevelEditor
 public:
 	LevelEditor(sf::RenderWindow* window);
 
-	void update(float deltaTime);
+	void update(float deltaTime, sf::Vector2f mousePos);
 	void render();
 
 protected:
@@ -23,7 +23,7 @@ private:
 	void setupLayout();
 	void manageMenus();
 
-	LevelRenderer levelRenderer = LevelRenderer();
+	LevelRenderer levelRenderer;
 	Toolbar toolbar = Toolbar();
 	bool isActive = true;
 

@@ -37,11 +37,15 @@ int main() {
 
             if (event.type == sf::Event::Closed)
                 window.close();
-
+            //TODO Look into why only one view scales during window-resize
         }
 
         ImGui::SFML::Update(window, deltaClock.restart());
-        levelEditor.update(deltaTime);
+
+        sf::Vector2i pixelPos = sf::Mouse::getPosition(window);
+        sf::Vector2f worldPos = window.mapPixelToCoords(pixelPos);
+
+        levelEditor.update(deltaTime, worldPos);
 
         ImGui::ShowDemoWindow();
 

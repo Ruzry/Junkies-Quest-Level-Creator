@@ -4,19 +4,23 @@ LevelEditor::LevelEditor(sf::RenderWindow* window)
 {
 	window_ = window;
 
+	levelRenderer = LevelRenderer(window, &windowInfo, toolbar.getTextureMap());
+
 	setupLayout();
 }
 
-void LevelEditor::update(float deltaTime)
+void LevelEditor::update(float deltaTime, sf::Vector2f mousePos)
 {
 	manageMenus();
+
+	levelRenderer.update(deltaTime, mousePos, isSelected, selectedAsset);
 }
 
 void LevelEditor::render()
 {
 	window_->setView(levelView);
 
-	levelRenderer.render(window_, &windowInfo);
+	levelRenderer.render();
 }
 
 void LevelEditor::setupLayout()
