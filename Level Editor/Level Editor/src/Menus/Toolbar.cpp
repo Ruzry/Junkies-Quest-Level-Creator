@@ -9,49 +9,6 @@ void Toolbar::update(float deltaTime)
 {
 }
 
-void Toolbar::fileMenu(bool *isActive)
-{
-    if (ImGui::BeginMenuBar())
-    {
-        if (ImGui::BeginMenu("File"))
-        {
-            if (ImGui::MenuItem("New", "Ctrl+N"))
-                newFile();
-
-            if (ImGui::MenuItem("Open..", "Ctrl+O"))
-                open();
-
-            if (ImGui::MenuItem("Save", "Ctrl+S"))
-                save();
-
-            if (ImGui::MenuItem("Export", "Ctrl+E"))
-                exportLevel();
-
-            if (ImGui::MenuItem("Close", "Ctrl+W"))
-                *isActive = false;
-
-            ImGui::EndMenu();
-        }
-        ImGui::EndMenuBar();
-    }
-}
-
-void Toolbar::newFile()
-{
-}
-
-void Toolbar::open()
-{
-}
-
-void Toolbar::save()
-{
-}
-
-void Toolbar::exportLevel()
-{
-}
-
 void Toolbar::loadAssetComboGroups()
 {
     std::ifstream f("Assets/AssetGroup.json");
@@ -132,8 +89,6 @@ void Toolbar::assetTypeCombo()
                 assetSelected = false;
             }
 
-            // Set the initial focus when opening the combo
-            // (scrolling + keyboard navigation focus)
             if (isSelected) 
                 ImGui::SetItemDefaultFocus();
         }
@@ -201,7 +156,6 @@ void Toolbar::assetProperties(const float TOOLBAR_WIDTH)
 void Toolbar::selectAsset(int ID)
 {
     ImGui::SetItemDefaultFocus();
-    std::cout << "Asset Button Pressed " << ID << " ";
 
     assetSelected = true;
     selectedAsset = assetGroups[selectedGroupIndex].getAsset_(ID);

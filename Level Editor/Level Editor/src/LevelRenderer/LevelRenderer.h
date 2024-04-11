@@ -17,26 +17,27 @@ public:
 
 	void update(float deltaTime, sf::Vector2f mousePos, bool selected, GridObject* asset);
 	void render();
-
+	void input(sf::Event* event, float dt);
+	
 protected:
 
 private:
 	void renderGrid();
 	void renderGridAssets();
 	void renderSelection();
-	void initGrid();
+	void initGridAssets();
 	std::vector<std::vector<GridObject>> levelGrid = {};
 
 	sf::RenderWindow* window_;
 	WindowInfo* windowInfo_;
 	std::map<std::string, sf::Texture>* textureMap = {};
 
-	GridObject object;
-
 	sf::Vector2f mousePosition;
 
 	GridObject selectedAsset;
 	bool isSelected = false;
+	bool mousePressed = false;
+	int xOffset;
 
 	sf::RectangleShape selectionHighlight;
 };

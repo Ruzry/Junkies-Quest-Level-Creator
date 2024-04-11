@@ -38,6 +38,7 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
             //TODO Look into why only one view scales during window-resize
+            levelEditor.input(&event, deltaTime);
         }
 
         ImGui::SFML::Update(window, deltaClock.restart());
