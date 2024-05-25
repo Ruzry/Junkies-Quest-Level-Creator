@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Include\imgui\misc\cpp\imgui_stdlib.cpp" />
     <ClCompile Include="src\Level Editor\AssetGroup.cpp" />
     <ClCompile Include="src\LevelRenderer\GridObject.cpp" />
     <ClCompile Include="src\LevelRenderer\GridSpace.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="src\Menus\Toolbar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\imgui\misc\cpp\imgui_stdlib.h" />
     <ClInclude Include="src\Level Editor\AssetGroup.h" />
     <ClInclude Include="src\Level Editor\WindowInfo.hpp" />
     <ClInclude Include="src\LevelRenderer\GridObject.h" />

@@ -19,12 +19,13 @@ public:
 	void render();
 	void input(sf::Event* event, float dt);
 	
+	void addAsset(GridObject object, int xCoord, int yCoord);
+	std::vector<std::vector<GridObject>>* getLevelGrid(){ return &levelGrid; }
 protected:
 
 private:
 	void renderGrid();
 	void renderGridAssets();
-	void renderSelection();
 	void initGridAssets();
 	std::vector<std::vector<GridObject>> levelGrid = {};
 
@@ -36,8 +37,11 @@ private:
 
 	GridObject selectedAsset;
 	bool isSelected = false;
-	bool mousePressed = false;
-	int xOffset;
+	bool leftMousePressed = false;
+	bool rightMousePressed = false;
+	bool inGridBounds = false;
+
+	int xOffset = 0;
 
 	sf::RectangleShape selectionHighlight;
 };

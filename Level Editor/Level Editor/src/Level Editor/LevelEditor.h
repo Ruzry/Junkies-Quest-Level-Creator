@@ -1,6 +1,7 @@
 #pragma once
 
 #include "imgui.h"
+#include <../imgui/misc/cpp/imgui_stdlib.h>
 #include <SFML/Graphics.hpp>
 #include "../Menus/Toolbar.h"
 #include "../LevelRenderer/LevelRenderer.h"
@@ -24,10 +25,13 @@ private:
 	sf::RenderWindow* window_;
 
 	void loadConfig();
-	void loadLevelFile();
+	void loadLevelFile(std::string levelFilepath);
 	void setupLayout();
 	void manageMenus();
 	void fileMenu(bool* isActive);
+	void newFile();
+	void closeFilePopup();
+	void save();
 
 	LevelRenderer levelRenderer;
 	Toolbar toolbar = Toolbar();
@@ -42,5 +46,8 @@ private:
 	GridObject* selectedAsset;
 
 	std::string lastLoadedLevel;
+
+	bool newFilePopup = false;
+
 
 };

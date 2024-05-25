@@ -10,4 +10,6 @@ GridObject::GridObject(std::string name_, std::string filePath_, bool isIntangib
 	filePath = filePath_;
 	isIntangible = isIntangible_;
 	size = size_;
+
+	isEmpty_ = false;
 }

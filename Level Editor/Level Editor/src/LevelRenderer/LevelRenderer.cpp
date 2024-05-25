@@ -30,7 +30,8 @@ void LevelRenderer::update(float deltaTime, sf::Vector2f mousePos, bool selected
 	bool yBound = (mousePosition.y < windowInfo_->getLevelHeight() && mousePosition.y > 0)
 		? true : false;
 
-	isSelected = (selected && xBound && yBound);
+	inGridBounds = (xBound && yBound);
+	isSelected = (selected && inGridBounds);
 
 	float x_cellPos = floor(mousePosition.x - ((int)mousePosition.x %
 		(int)windowInfo_->getCellSize()));
@@ -40,23 +41,21 @@ void LevelRenderer::update(float deltaTime, sf::Vector2f mousePos, bool selected
 	int x_coord = (x_cellPos - xOffset) / (int)windowInfo_->getCellSize();
 	int y_coord = y_cellPos / (int)windowInfo_->getCellSize();
 
+	if (inGridBounds) 
+	{
+		int highlighSize = isSelected ? selectedAsset.getSize() : (int)windowInfo_->getCellSize();
+		selectionHighlight.setSize(sf::Vector2f(highlighSize, highlighSize));
+		selectionHighlight.setPosition(sf::Vector2f(x_cellPos, y_cellPos));
+	}
+
 	if (isSelected)
 	{
-
-		//bool mousePressed = false;
-
-
-
 		selectedAsset = GridObject(asset->getName(), asset->getFilePath(),
 			asset->getIsIntangible(), asset->getSize());
 		selectedAsset.setTexture(textureMap->at(asset->getName()));
 		selectedAsset.setPosition(sf::Vector2f(mousePosition.x + 15, mousePosition.y + 15));
 
-		selectionHighlight.setSize(sf::Vector2f(selectedAsset.getSize(),
-			selectedAsset.getSize()));
-		selectionHighlight.setPosition(sf::Vector2f(x_cellPos, y_cellPos));
-
-		if (mousePressed)
+		if (leftMousePressed)
 		{
 			GridObject levelAsset = GridObject(asset->getName(), asset->getFilePath(),
 				asset->getIsIntangible(), asset->getSize());
@@ -66,29 +65,41 @@ void LevelRenderer::update(float deltaTime, sf::Vector2f mousePos, bool selected
 			levelGrid[x_coord][y_coord] = levelAsset;
 		}
 	}
+
+	if (rightMousePressed)
+		if (inGridBounds)
+			levelGrid[x_coord][y_coord].erase();
 }
 
 void LevelRenderer::render()
 {
-	renderGridAssets();
 	renderGrid();
+	renderGridAssets();
 
 	if (isSelected)
-		renderSelection();
+		window_->draw(selectedAsset);
+
+	window_->draw(selectionHighlight);
 }
 
 void LevelRenderer::input(sf::Event* event, float dt)
 {
-	if (isSelected)
-	{
-		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-		{
-			std::cout << "Mouse Button Pressed ";
-			mousePressed = true;
-		}
-		else
-			mousePressed = false;
-	}
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+		leftMousePressed = true;
+	else
+		leftMousePressed = false;
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
+		rightMousePressed = true;
+	else
+		rightMousePressed = false;
+}
+
+void LevelRenderer::addAsset(GridObject object, int xCoord, int yCoord)
+{
+	levelGrid[xCoord][yCoord] = object;
+	levelGrid[xCoord][yCoord].setTexture(textureMap->at(object.getName()));
+	levelGrid[xCoord][yCoord].setPosition(sf::Vector2f((xOffset + (xCoord * windowInfo_->getCellSize())), (yCoord * windowInfo_->getCellSize())));
 }
 
 void LevelRenderer::renderGrid()
@@ -118,15 +129,10 @@ void LevelRenderer::renderGridAssets()
 	{
 		for (int j = 0; j < windowInfo_->getRows(); j++)
 		{
-			window_->draw(levelGrid[i][j]);
+			if (!levelGrid[i][j].isEmpty())
+				window_->draw(levelGrid[i][j]);
 		}
 	}
-}
-
-void LevelRenderer::renderSelection()
-{
-	window_->draw(selectedAsset);
-	window_->draw(selectionHighlight);
 }
 
 void LevelRenderer::initGridAssets()
@@ -137,8 +143,8 @@ void LevelRenderer::initGridAssets()
 
 		for (int j = 0; j < windowInfo_->getRows(); j++)
 		{
-			GridObject asset;
-			assets.push_back(asset);
+			GridObject emptyAsset;
+			assets.push_back(emptyAsset);
 		}
 
 		levelGrid.push_back(assets);
