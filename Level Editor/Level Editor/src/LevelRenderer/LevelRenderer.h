@@ -19,14 +19,15 @@ public:
 	void render();
 	void input(sf::Event* event, float dt);
 	
-	void addAsset(GridObject object, int xCoord, int yCoord);
+	void setGridSpace(GridObject object, int xCoord, int yCoord);
 	std::vector<std::vector<GridObject>>* getLevelGrid(){ return &levelGrid; }
+	void setupNewLevelGrid(int columns, int rows); //{ levelGrid.clear(); }
 protected:
 
 private:
 	void renderGrid();
 	void renderGridAssets();
-	void initGridAssets();
+	void populateLevelGrid(int rows, int columns);
 	std::vector<std::vector<GridObject>> levelGrid = {};
 
 	sf::RenderWindow* window_;

@@ -24,13 +24,15 @@ protected:
 private:
 	sf::RenderWindow* window_;
 
-	void loadConfig();
+	std::string loadConfig();
+	void saveConfig();
+	void updateRecentFiles(std::string oldFilepath, std::string newFilePath);
 	void loadLevelFile(std::string levelFilepath);
 	void setupLayout();
 	void manageMenus();
 	void fileMenu(bool* isActive);
 	void newFile();
-	void closeFilePopup();
+	void showRecentFileMenu();
 	void save();
 
 	LevelRenderer levelRenderer;
@@ -46,8 +48,10 @@ private:
 	GridObject* selectedAsset;
 
 	std::string lastLoadedLevel;
+	std::vector<std::string> recentFiles = {};
 
 	bool newFilePopup = false;
+	bool recentFilePopup = false;
 
 
 };

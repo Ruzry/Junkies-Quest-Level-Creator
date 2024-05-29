@@ -21,8 +21,8 @@ public:
     std::string getFilePath() { return filePath; }
     bool getIsIntangible() { return isIntangible; }
     int getSize() { return size; }
-    bool isEmpty() { return isEmpty_; }
-    void erase() { isEmpty_ = true; }
+    bool isObjectEmpty() { return isEmpty; }
+    void erase() { isEmpty = true; }
 
     void resetSize() {}
 
@@ -34,5 +34,5 @@ private:
     std::string filePath;
     bool isIntangible;
     int size;
-    bool isEmpty_ = true;
+    bool isEmpty;
 };

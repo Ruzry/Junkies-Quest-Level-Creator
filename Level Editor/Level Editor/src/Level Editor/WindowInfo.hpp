@@ -9,12 +9,9 @@ private:
 	const float RENDERER_WIDTH = WINDOW_WIDTH - TOOLBAR_WIDTH;
 	const float WINDOW_X_CENTER = TOOLBAR_WIDTH + ((WINDOW_WIDTH - TOOLBAR_WIDTH) / 2);
 
-	float levelWidth;
-	float levelHeight;
-	float LevelXCenter;
-
-	float rows = (WINDOW_WIDTH - TOOLBAR_WIDTH) / CELL_SIZE;
-	float columns = WINDOW_HEIGHT / CELL_SIZE;
+	float levelWidth = 0;
+	float levelHeight = 0;
+	float LevelXCenter = 0;
 
 public:
 
@@ -28,15 +25,9 @@ public:
 	float getLevelWidth() { return levelWidth; }
 	float getLevelHeight() { return levelHeight; }
 	float getLevelXCenter() { return LevelXCenter; }
-
-	float getRows() { return rows; }
-	float getColumns() { return columns; }
 	
-	void calculateLevelInfo(int rows_, int columns_)
+	void calculateLevelInfo(int rows, int columns)
 	{
-		rows = rows_;
-		columns = columns_;
-
 		levelWidth = columns * CELL_SIZE;
 		levelHeight = rows * CELL_SIZE;
 		LevelXCenter = TOOLBAR_WIDTH + (levelWidth / 2);

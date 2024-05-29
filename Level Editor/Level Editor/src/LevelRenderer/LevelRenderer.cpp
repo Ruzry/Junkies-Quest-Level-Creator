@@ -11,8 +11,6 @@ LevelRenderer::LevelRenderer(sf::RenderWindow* window, WindowInfo* windowInfo, s
 	windowInfo_(windowInfo),
 	textureMap(map)
 {
-	initGridAssets();
-
 	xOffset = windowInfo_->getToolbarWidth();
 
 	selectionHighlight = sf::RectangleShape(sf::Vector2f(windowInfo_->getCellSize(), windowInfo_->getCellSize()));
@@ -95,16 +93,22 @@ void LevelRenderer::input(sf::Event* event, float dt)
 		rightMousePressed = false;
 }
 
-void LevelRenderer::addAsset(GridObject object, int xCoord, int yCoord)
+void LevelRenderer::setGridSpace(GridObject object, int xCoord, int yCoord)
 {
-	levelGrid[xCoord][yCoord] = object;
+	levelGrid[xCoord][yCoord] = object; 
 	levelGrid[xCoord][yCoord].setTexture(textureMap->at(object.getName()));
 	levelGrid[xCoord][yCoord].setPosition(sf::Vector2f((xOffset + (xCoord * windowInfo_->getCellSize())), (yCoord * windowInfo_->getCellSize())));
 }
 
+void LevelRenderer::setupNewLevelGrid(int rows, int columns)
+{
+	levelGrid.clear();
+	populateLevelGrid(rows, columns);
+}
+
 void LevelRenderer::renderGrid()
 {
-	for (int i = 0; i < windowInfo_->getColumns() + 1; i++)
+	for (int i = 0; i < levelGrid.size() + 1; i++)
 	{
 		float xPos = (xOffset + (i * windowInfo_->getCellSize()));
 		sf::Vertex verticalLine[] = {{{xPos, 0}, sf::Color::Cyan},
@@ -113,7 +117,7 @@ void LevelRenderer::renderGrid()
 		window_->draw(verticalLine, 2, sf::Lines);
 	}
 
-	for (int j = 0; j < windowInfo_->getRows() + 1; j++)
+	for (int j = 0; j < levelGrid[0].size() + 1; j++)
 	{
 		float yPos = (j * windowInfo_->getCellSize());
 		sf::Vertex horizontalLine[] = {{{(float)xOffset, yPos}, sf::Color::Cyan},
@@ -125,23 +129,28 @@ void LevelRenderer::renderGrid()
 
 void LevelRenderer::renderGridAssets()
 {
-	for (int i = 0; i < windowInfo_->getColumns(); i++)
+	for (int i = 0; i < levelGrid.size(); i++)
 	{
-		for (int j = 0; j < windowInfo_->getRows(); j++)
+		for (int j = 0; j < levelGrid[i].size(); j++)
 		{
-			if (!levelGrid[i][j].isEmpty())
+			if (!levelGrid[i][j].isObjectEmpty())
 				window_->draw(levelGrid[i][j]);
 		}
 	}
 }
 
-void LevelRenderer::initGridAssets()
+/*
+* Populates the levelGrid vector with empty GridObjects 
+* (empty as in an initialzed GridObject but empty rendering information)
+* IMPORTANT: When looping through the level grid, columns then rows!
+*/
+void LevelRenderer::populateLevelGrid(int rows, int columns)
 {
-	for (int i = 0; i < windowInfo_->getColumns(); i++)
+	for (int i = 0; i < columns; i++)
 	{
 		std::vector<GridObject> assets = {};
 
-		for (int j = 0; j < windowInfo_->getRows(); j++)
+		for (int j = 0; j < rows; j++)
 		{
 			GridObject emptyAsset;
 			assets.push_back(emptyAsset);

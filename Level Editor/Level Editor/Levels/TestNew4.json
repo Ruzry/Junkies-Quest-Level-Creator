@@ -1,6 +1,231 @@
 {
     "level_cell_height": 50,
-    "level_cell_width": 1072072,
+    "level_cell_width": 50,
     "level_name": "TestNew4",
-    "objects": []
+    "objects": [
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 18,
+            "y_cell_position": 4
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 18,
+            "y_cell_position": 5
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 18,
+            "y_cell_position": 6
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 18,
+            "y_cell_position": 7
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 18,
+            "y_cell_position": 9
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 18,
+            "y_cell_position": 18
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 19,
+            "y_cell_position": 11
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 19,
+            "y_cell_position": 14
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 19,
+            "y_cell_position": 16
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 19,
+            "y_cell_position": 19
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 19,
+            "y_cell_position": 20
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 20,
+            "y_cell_position": 20
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 22,
+            "y_cell_position": 21
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 24,
+            "y_cell_position": 21
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 27,
+            "y_cell_position": 21
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 27,
+            "y_cell_position": 25
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 27,
+            "y_cell_position": 27
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 27,
+            "y_cell_position": 29
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 27,
+            "y_cell_position": 30
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 28,
+            "y_cell_position": 16
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 28,
+            "y_cell_position": 17
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 28,
+            "y_cell_position": 19
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 28,
+            "y_cell_position": 22
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 31,
+            "y_cell_position": 22
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 35,
+            "y_cell_position": 23
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 38,
+            "y_cell_position": 22
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 38,
+            "y_cell_position": 23
+        },
+        {
+            "filepath": "Assets/Basic/16x16 White Square.png",
+            "intangible": true,
+            "name": "White1",
+            "size": 16,
+            "x_cell_position": 39,
+            "y_cell_position": 23
+        }
+    ]
 }

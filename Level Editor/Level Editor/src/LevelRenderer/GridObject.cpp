@@ -2,6 +2,9 @@
 
 GridObject::GridObject()
 {
+	size = 0;
+	isIntangible = false;
+	isEmpty = true;
 }
 
 GridObject::GridObject(std::string name_, std::string filePath_, bool isIntangible_, int size_)
@@ -11,5 +14,5 @@ GridObject::GridObject(std::string name_, std::string filePath_, bool isIntangib
 	isIntangible = isIntangible_;
 	size = size_;
 
-	isEmpty_ = false;
+	isEmpty = false;
 }
