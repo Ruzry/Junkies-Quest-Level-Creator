@@ -53,5 +53,8 @@ private:
 	bool newFilePopup = false;
 	bool recentFilePopup = false;
 
+	const int MENU_POS_OFFSET = 2;
+	const int TOOLBAR_YPOS_OFFSET = 19;
+	const int MENU_TEXT_OFFSET = 7;
 
 };

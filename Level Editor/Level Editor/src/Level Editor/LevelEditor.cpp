@@ -170,12 +170,18 @@ void LevelEditor::setupLayout()
 */
 void LevelEditor::manageMenus()
 {	
-	ImGui::SetNextWindowPos(ImVec2(0, 0), ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(windowInfo.getToolbarWidth(), windowInfo.getWindowHeight()), ImGuiCond_FirstUseEver);
+	ImGui::Begin("File Menu Toolbar", &isActive, ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoMove);
 
-	ImGui::Begin("Asset Toolbar", &isActive, ImGuiWindowFlags_MenuBar);
+	ImGui::SetWindowPos(ImVec2(-MENU_POS_OFFSET, 0));
+	ImGui::SetWindowSize(ImVec2(windowInfo.getWindowWidth() + MENU_POS_OFFSET, 50));
 
 	fileMenu(&isActive);
+
+	ImGui::End();
+
+	ImGui::Begin("Asset Toolbar", &isActive, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize);
+	ImGui::SetWindowPos(ImVec2(0, TOOLBAR_YPOS_OFFSET));
+
 	toolbar.AssetMenu(windowInfo.getToolbarWidth());
 
 	isSelected = toolbar.isAssetSelected();
@@ -210,6 +216,11 @@ void LevelEditor::fileMenu(bool* isActive)
 
 			ImGui::EndMenu();
 		}
+
+		ImGui::SameLine(windowInfo.getToolbarWidth() - MENU_TEXT_OFFSET);
+		ImGui::Separator();
+		ImGui::TextDisabled("Loaded Level: (%s)", lastLoadedLevel.c_str());
+		
 		ImGui::EndMenuBar();		
 	}
 
